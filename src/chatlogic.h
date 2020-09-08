@@ -18,6 +18,8 @@ private:
 
     // data handles (owned)
     std::vector<std::unique_ptr<GraphNode>> _nodes; //CC 2
+    
+    // CC 4: No longer owned:
     std::vector<GraphEdge *> _edges;
 
     ////
