@@ -3,10 +3,12 @@
 #include <algorithm>
 #include <ctime>
 
+
 #include "chatlogic.h"
 #include "graphnode.h"
 #include "graphedge.h"
 #include "chatbot.h"
+
 
 // constructor WITHOUT memory allocation
 ChatBot::ChatBot()
@@ -44,7 +46,41 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
+// ChatBot::ChatBot(ChatBot& source); // 2 Copy constructor DELETED
+// ChatBot::ChatBot& operator=(ChatBot& source); // 4 Copy Assignment  DELETED
 
+ChatBot::ChatBot(ChatBot&& source){ // 3 Move constructor 
+    std::cout<<"Chatbot MOVE C'TOR called" << std::endl;
+
+    _image = source._image;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+    source._currentNode = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+    source._image = nullptr;
+
+}
+ChatBot& ChatBot::operator=(ChatBot&& source){ // 5 Move assignment
+    std::cout<<"Chatbot MOVE ASSIGNMENT called" << std::endl;
+    
+    delete _image;
+    delete _currentNode;
+    delete _rootNode;
+    delete _chatLogic;
+    
+    _image = source._image;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+    source._currentNode = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+    source._image = nullptr;
+}
 ////
 //// EOF STUDENT CODE
 
