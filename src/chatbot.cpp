@@ -57,6 +57,8 @@ ChatBot::ChatBot(ChatBot&& source){ // 3 Move constructor
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
 
+    _chatLogic->SetChatbotHandle(this);
+
     source._currentNode = nullptr;
     source._rootNode = nullptr;
     source._chatLogic = nullptr;
@@ -66,20 +68,25 @@ ChatBot::ChatBot(ChatBot&& source){ // 3 Move constructor
 ChatBot& ChatBot::operator=(ChatBot&& source){ // 5 Move assignment
     std::cout<<"Chatbot MOVE ASSIGNMENT called" << std::endl;
     
-    delete _image;
-    delete _currentNode;
-    delete _rootNode;
-    delete _chatLogic;
+    if (&source == this) return *this;
+
+    if(_image != NULL) // Attention: wxWidgets used NULL and not nullptr
+    {
+        delete _image;
+    }
     
     _image = source._image;
     _currentNode = source._currentNode;
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
-
+    _chatLogic->SetChatbotHandle(this);
+    
     source._currentNode = nullptr;
     source._rootNode = nullptr;
     source._chatLogic = nullptr;
-    source._image = nullptr;
+    source._image = NULL;
+
+    return *this;
 }
 ////
 //// EOF STUDENT CODE
