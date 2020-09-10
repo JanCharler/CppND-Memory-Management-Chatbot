@@ -46,8 +46,35 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
-// ChatBot::ChatBot(ChatBot& source); // 2 Copy constructor DELETED
-// ChatBot::ChatBot& operator=(ChatBot& source); // 4 Copy Assignment  DELETED
+ChatBot::ChatBot(ChatBot& source){ // 2 Copy constructor 
+    std::cout<<"Chatbot COPY C'TOR called" << std::endl;
+    
+    _image = std::move(source._image);
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+    source._image = nullptr;
+}
+ChatBot& ChatBot::operator=(ChatBot& source){ // 4 Copy Assignment 
+    std::cout<<"Chatbot COPY ASSIGNMENT called" << std::endl;
+
+    // deallocate heap memory
+    if(_image != NULL) // Attention: wxWidgets used NULL and not nullptr
+    {
+        delete _image;
+        _image = NULL;
+    }
+
+    _image = std::move(source._image);
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+    source._image = nullptr;
+
+    return *this;
+}
 
 ChatBot::ChatBot(ChatBot&& source){ // 3 Move constructor 
     std::cout<<"Chatbot MOVE C'TOR called" << std::endl;

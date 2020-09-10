@@ -51,7 +51,7 @@ public:
     ////
     
     //void MoveChatbotHere(ChatBot *chatbot);   
-    void MoveChatbotHere(ChatBot&& chatbot); // CC 5:
+    void MoveChatbotHere(ChatBot chatbot); // CC 5:
 
     ////
     //// EOF STUDENT CODE

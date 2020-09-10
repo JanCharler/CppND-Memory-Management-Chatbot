@@ -29,9 +29,9 @@ public:
 
     //// STUDENT CODE
     ////
-    ChatBot(ChatBot& source) = delete; // 2 Copy Constructor
+    ChatBot(ChatBot& source); // = delete; // 2 Copy Constructor
     ChatBot(ChatBot&& source); // 3 Move constructor
-    ChatBot& operator=(ChatBot& source) = delete; // 4 Copy Assignment 
+    ChatBot& operator=(ChatBot& source); // = delete; // 4 Copy Assignment 
     ChatBot& operator=(ChatBot&& source); // 5 Move assignment
     ////
     //// EOF STUDENT CODE
