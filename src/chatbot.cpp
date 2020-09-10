@@ -44,8 +44,6 @@ ChatBot::~ChatBot()
     }
 }
 
-//// STUDENT CODE
-////
 ChatBot::ChatBot(ChatBot& source){ // 2 Copy constructor 
     std::cout<<"Chatbot COPY C'TOR called" << std::endl;
     
@@ -90,8 +88,8 @@ ChatBot::ChatBot(ChatBot&& source){ // 3 Move constructor
     source._rootNode = nullptr;
     source._chatLogic = nullptr;
     source._image = nullptr;
-
 }
+
 ChatBot& ChatBot::operator=(ChatBot&& source){ // 5 Move assignment
     std::cout<<"Chatbot MOVE ASSIGNMENT called" << std::endl;
     
@@ -115,8 +113,6 @@ ChatBot& ChatBot::operator=(ChatBot&& source){ // 5 Move assignment
 
     return *this;
 }
-////
-//// EOF STUDENT CODE
 
 void ChatBot::ReceiveMessageFromUser(std::string message)
 {
